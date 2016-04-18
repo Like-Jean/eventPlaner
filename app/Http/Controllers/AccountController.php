@@ -33,7 +33,7 @@ class AccountController extends Controller
 
         //Check if the account exist
         try {
-            $user = Account::where('account','=',$account)->first();
+            $user = Account::where('account','=',$account)->firstOrFail();
         } catch (ModelNotFoundException $e) {
             return response()->json(['status'=>403,'message' => 'account not found',
             'data'=>null]);
@@ -103,7 +103,7 @@ class AccountController extends Controller
             $Account->address = $address;
             $Account->nationality = $nationality;
             $Account->city = $city;
-            //$Account->hobby = $hobby;
+
             $Account->birthday = $birthday;
 
             $Account->save();
